@@ -28,15 +28,29 @@ Titles stick to the **index**, not the pane. If you close pane 2, the old pane 3
 
 ### Build from source
 
-```powershell
+```bash
 npm install --legacy-peer-deps
 npm run build
-npm run deploy   # copies package.json + dist to %APPDATA%\tabby\plugins\node_modules\tabby-pane-titles
 ```
 
-Then restart Tabby. The plugin appears in **Settings → Plugins** and adds a **Pane Titles** settings tab.
-
 > `--legacy-peer-deps` is needed because Tabby's Angular 15 toolchain peer-requires TypeScript <5 while the MCP SDK's typings need TypeScript 5. The conflict only affects Angular's `ngc` compiler, which this build doesn't use.
+
+### Copy to Tabby's plugin directory
+
+After building, copy `package.json` and the `dist/` folder into Tabby's plugins directory:
+
+| OS | Path |
+|---|---|
+| Windows | `%APPDATA%\tabby\plugins\node_modules\tabby-pane-titles` |
+| macOS | `~/Library/Application Support/tabby/plugins/node_modules/tabby-pane-titles` |
+| Linux | `~/.config/tabby/plugins/node_modules/tabby-pane-titles` |
+
+Or run the install script which does this for you:
+
+- **Windows**: [`scripts/install.ps1`](scripts/install.ps1)
+- **macOS / Linux**: [`scripts/install.sh`](scripts/install.sh)
+
+Then restart Tabby. The plugin appears in **Settings → Plugins** and adds a **Pane Titles** settings tab.
 
 ## Using the plugin
 
@@ -196,7 +210,6 @@ If Tabby-MCP is not running (or the URL is wrong), tools still work: `tabbyMcpSe
 
 ```powershell
 npm run watch    # rebuild on change
-npm run deploy   # copy to Tabby's plugin dir (restart Tabby after)
 ```
 
 Source layout:

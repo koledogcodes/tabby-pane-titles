@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch",
-    "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy.ps1"
+    "watch": "webpack --watch"
   },
   "author": "electrotech14",
   "license": "MIT",
